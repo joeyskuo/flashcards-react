@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
-
+import { connect } from 'react-redux';
+import { addStack } from '../actions';
 
 class StackForm extends Component {
 
@@ -12,6 +13,11 @@ class StackForm extends Component {
             title: '',
             cards: []
         }
+    }
+
+    addStack() {
+        console.log('StackForm state', this.state);
+        this.props.addStack(this.state);
     }
 
     addCard() {
@@ -33,7 +39,7 @@ class StackForm extends Component {
 
     render() {
 
-        //console.log('StackForm state', this.state);
+
 
         return(
             <div>
@@ -60,11 +66,11 @@ class StackForm extends Component {
                                            this.updateCard(event, index, 'prompt');
                                      }}/>
                                      {' '}
-                                     <ControlLabel onChange={event =>{
-                                         this.updateCard(event, index, 'answer');
-                                     }}>Answer:</ControlLabel>
+                                     <ControlLabel>Answer:</ControlLabel>
                                      {' '}
-                                     <FormControl/>
+                                     <FormControl onChange={event =>{
+                                         this.updateCard(event, index, 'answer');
+                                     }}/>
                                  </FormGroup>
                              </div>
                          )
@@ -73,9 +79,11 @@ class StackForm extends Component {
                 </Form>
                 <br />
                 <Button onClick={() => this.addCard()}>Add Card</Button>
+                {' '}
+                <Button onClick={() => this.addStack()}>Save Stack</Button>
             </div>
         )
     }
 }
 
-export default StackForm;
+export default connect(null, { addStack })(StackForm);
