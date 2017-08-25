@@ -7,6 +7,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Stack from './components/Stack';
 import { setStack } from './actions';
 import { Provider } from 'react-redux';
+import './index.css';
 
 const store = createStore(rootReducer);
 store.subscribe(() => console.log('store', store.getState()));
