@@ -6,13 +6,17 @@ import { setStack } from '../actions';
 
 class StackList extends Component {
     render() {
+        //console.log('stacklist props', this.props);
         return (
             <div>
                 {
                     stacks.map(stack => {
                         return (
-                            <Link to='/stack'>
-                                <h4 key={stack.id}>{stack.title}</h4>
+                            <Link to='/stack'
+                                  key={stack.id}
+                                  onClick={() => {this.props.setStack(stack)}}
+                            >
+                                <h4 >{stack.title}</h4>
                             </Link>
                         )
                     })
@@ -22,6 +26,4 @@ class StackList extends Component {
     }
 }
 
-const connectComponent = connect();
-
-export default connectComponent(StackList);
+export default connect(null, { setStack })(StackList);
