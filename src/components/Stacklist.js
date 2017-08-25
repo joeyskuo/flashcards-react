@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import stacks from '../data/stacks.json';
 import { Link } from 'react-router-dom';
+import { setStack } from '../actions';
 
 class StackList extends Component {
     render() {
@@ -20,4 +22,6 @@ class StackList extends Component {
     }
 }
 
-export default StackList;
+const connectComponent = connect();
+
+export default connectComponent(StackList);
